@@ -6,6 +6,6 @@ files			:
 patchProps		: "starlord-ver.props"
 
 clevercloud		: false
-startScripts	: true
+startScripts	: false		// we should start a Java process, so it can more easily be killed than a script
 startScriptArgs	: afxStarLord
 zip				: true
