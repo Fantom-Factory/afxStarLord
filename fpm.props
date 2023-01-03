@@ -1,0 +1,3 @@
+
+dirRepo.build				= build/
+fanrRepo.haxall				= ${repoHaxall}

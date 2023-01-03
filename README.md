@@ -1,0 +1,155 @@
+# Language Server Protocol (LSP) for Fantom v0.0.2
+---
+
+[![Written in: Fantom](http://img.shields.io/badge/written%20in-Fantom-lightgray.svg)](https://fantom-lang.org/)
+[![pod: v0.0.2](http://img.shields.io/badge/pod-v0.0.2-yellow.svg)](http://eggbox.fantomfactory.org/pods/afxStarLord)
+[![Licence: ISC](http://img.shields.io/badge/licence-ISC-blue.svg)](https://choosealicense.com/licenses/isc/)
+
+## Overview
+
+StarLord is a Language Server Protocol (LSP) implementation for Fantom.
+
+This pre-alpha / proof of concept version has support for:
+
+* Standalone Fantom files
+* Tracking file operations (incremental updates, renames, and deletes)
+* Fantom Projects (via `build.fan` files and LSP Workspaces)
+* Reporting compilation errors and warnings (via LSP Diagnostics)
+* Class outline views (via LSP Document Symbols)
+
+
+Language Servers (such as the Fantom LSP) are standalone programs that are started by IDEs and text editors (the Language Clients) to provide editing hints. All communication between client and server is done over std out and std in.
+
+Note that LSPs generally do not provide syntax highlighting.
+
+## <a name="Install"></a>Install
+
+Install `Language Server Protocol (LSP) for Fantom` with the Fantom Pod Manager ( [FPM](http://eggbox.fantomfactory.org/pods/afFpm) ):
+
+    C:\> fpm install afxStarLord
+
+Or install `Language Server Protocol (LSP) for Fantom` with [fanr](https://fantom.org/doc/docFanr/Tool.html#install):
+
+    C:\> fanr install -r http://eggbox.fantomfactory.org/fanr/ afxStarLord
+
+To use in a [Fantom](https://fantom-lang.org/) project, add a dependency to `build.fan`:
+
+    depends = ["sys 1.0", ..., "afxStarLord 0.0"]
+
+## <a name="documentation"></a>Documentation
+
+Full API & fandocs are available on the [Eggbox](http://eggbox.fantomfactory.org/pods/afxStarLord/) - the Fantom Pod Repository.
+
+## Usage
+
+StarLord is distributed as a standalone (Fantom) application - just unzip it.
+
+Install an LSP Client feature / plugin into your favourite IDE / text editor and configure it to use the unzipped `afxStarLord` Fantom app. Some example text editor configurations are given below.
+
+StarLord needs to find the pods that your Fantom projects are dependant on, and each project may need different pods from different locations. For this, each project uses its own [Fantom Env](https://fantom.org/doc/docLang/Env).
+
+* Project Envs default to using environment variables
+* `fan.props` files can be used to configure a [PathEnv](https://fantom.org/doc/docLang/Env#PathEnv)
+* `fpm.props` files are also supported for [FPM](http://eggbox.fantomfactory.org/pods/afFpm) integration
+
+
+For example, place this `fan.props` in your project directory to compile against a SkySpark installation.
+
+    # fan.props to compile against SkySpark and its var dir
+    path=/Temp/skyspark-3.1.4; /Temp/skyspark-3.1.4/var
+    
+
+## IDE / Text Editor Integration
+
+### Eclipse IDE
+
+[Eclipse IDE](https://eclipseide.org/) uses the [LSP4E Plugin](https://github.com/eclipse/lsp4e), so install that first.
+
+Visit `Help -> Install New Software...` and enter the LSP4E p2 repository URL `http://download.eclipse.org/lsp4e/snapshots/`. The latest snapshot release (from September 2022) is needed to ensure errors and warnings are displayed to overcome [this issue](https://github.com/eclipse/lsp4e/issues/239).
+
+Create an **"External Tool Configuration"** with the following:
+
+* Name - `Fantom LSP`
+* Location - `C:\Apps\Java\bin\java.exe`
+* Arguments - `-cp C:\StarLord\lib\java\sys.jar fanx.tools.Fan afxStarLord`
+
+
+Visit `Window -> Preferences -> General -> Content Types` and **Add Child** to create a new `Fantom Source File` entry under `Text`. **Add** a file association of `*.fan`.
+
+Visit `Window -> Preferences -> General -> Editors -> File Associations` and make the **"Generic Text Editor"** the default editor.
+
+Visit `Window -> Preferences -> Language Servers`, click **Add**, and associate the "Text / Fantom Source File" with the new "Fantom LSP" external tool configuration.
+
+When editing Fantom files, make sure to open with the *Generic Text Editor* and not the default *Text Editor* - because LSP4E only works with the Generic Text Editor.
+
+### Kate Editor
+
+[Kate Editor](https://kate-editor.org/) is a little complicated to setup because you have to first create syntax highlighting and bind the LSP to the syntax.
+
+Save this file as `C:\Users\<username>\AppData\Local\org.kde.syntax-highlighting\syntax\fantom.xml` and restart Kate.
+
+    <!--
+    This Kate Editor syntax highlighting file is purposely blank.
+    It is just used to get a highlighting context so it may be assigned to an LSP.
+    -->
+    <language name="Fantom" section="XXX" extensions="*.fan" kateversion="5.53" mimetype="text/fantom">
+    </language>
+    
+
+Visit `Settings -> Configure Kate -> Open/Save -> Modes & Filetypes` and an entry of `XXX/Fantom` should now appear.
+
+Visit `Settings -> Configure Kate -> Plugins` and enable **LSP Client**.
+
+Visit `Settings -> Configure Kate -> LSP Client -> User Server Settings` and enter the following, but obviously swap the actual location of your Fantom `sys.jar`.
+
+    {
+      "servers": {
+        "fantom": {
+          "command": ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "fanx.tools.Fan", "afxStarLord"],
+          "url": "https://www.fantomfactory.com/",
+          "highlightingModeRegex": "Fantom"
+        }
+      }
+    }
+    
+
+### Sublime Text
+
+[Sublime Text](https://www.sublimetext.com/) uses [LSP for Sublime Text](https://lsp.sublimetext.io/)
+
+Visit `Tools -> Command Palette -> Package Control: Install Package -> Fantom` and install. This installs a [Fantom highlighter](https://github.com/mgiannini/sublime-fantom) that the LSP binds to.
+
+Visit `Tools -> Command Palette -> Package Control: Install Package -> LSP` and install.
+
+Visit `Tools -> Command Palette -> Preferences: LSP Settings` and in the user settings (the editor on the right), enter this.
+
+    {
+      "log_server": ["panel"],
+    
+      "clients": {
+        "Fantom LSP": {
+          "enabled": true,
+          "command": ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "fanx.tools.Fan", "afxStarLord"],
+          "selector": "source.fan",
+          "schemes": ["file"],
+        }
+      }
+    }
+    
+
+Visit `Tools -> LSP -> Toggle Diagnostics Panel` to view errors and warnings.
+
+## Notes
+
+StarLord tracks changes to files as you type, but only compiles and updates the outline view when a document is *saved* - the same as the [F4 IDE](https://github.com/xored/f4).
+
+As per standard Fantom compilation, compiled pods are output to `lib/fan/` of the current *working directory*, which is usually where `fan.props` is located. Set the  [outPodDir](https://fantom.org/doc/build/BuildPod#outPodDir) field in your `build.fan` to change this.
+
+Debug logging to a file maybe enabled by updating the StarLord command to:
+
+    ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "fanx.tools.Fan", "afxStarLord", "-debug", "-logToFile", "-logFile", "C:\\path\\to\\starlord-logs.txt"],
+    
+    
+
+Java, JNI, and DotNet compilation steps are not enabled.
+

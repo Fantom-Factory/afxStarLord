@@ -1,0 +1,16 @@
+# AFX licence file for:
+# StarLord - LSP for Fantom
+
+authority	= afx
+licVersion	= 0.1
+id			= 293ba67a-d8d90315
+rev			= 0
+dob			= 2023-01-01T02:02:02.000Z UTC
+mod			= 2023-01-01T02:02:02.000Z UTC
+product		= StarLord
+vendor		= 20d12998-94eeb7a1 Fantom Factory
+licensee	= public
+runtimes	= host
+libs		= afxLsp, afxLspFantom
+sig			= XHFANo033X7PEIpl3pweZYirrSqvvpim2PeNGsnNbPbzB0udaREQtJMEcx0dzuc_EGr7LXYrGrhEFapUVNNmnA
+

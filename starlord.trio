@@ -1,0 +1,11 @@
+podName			: "afxStarLord"
+buildDir		: "dist"
+gitUrl			: "<meh>"
+files			: 
+	lic/lic-starlord.props
+patchProps		: "starlord-ver.props"
+
+clevercloud		: false
+startScripts	: true
+startScriptArgs	: afxStarLord
+zip				: true
