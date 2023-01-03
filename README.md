@@ -22,24 +22,6 @@ Language Servers (such as the Fantom LSP) are standalone programs that are start
 
 Note that LSPs generally do not provide syntax highlighting.
 
-## <a name="Install"></a>Install
-
-Install `Language Server Protocol (LSP) for Fantom` with the Fantom Pod Manager ( [FPM](http://eggbox.fantomfactory.org/pods/afFpm) ):
-
-    C:\> fpm install afxStarLord
-
-Or install `Language Server Protocol (LSP) for Fantom` with [fanr](https://fantom.org/doc/docFanr/Tool.html#install):
-
-    C:\> fanr install -r http://eggbox.fantomfactory.org/fanr/ afxStarLord
-
-To use in a [Fantom](https://fantom-lang.org/) project, add a dependency to `build.fan`:
-
-    depends = ["sys 1.0", ..., "afxStarLord 0.0"]
-
-## <a name="documentation"></a>Documentation
-
-Full API & fandocs are available on the [Eggbox](http://eggbox.fantomfactory.org/pods/afxStarLord/) - the Fantom Pod Repository.
-
 ## Usage
 
 StarLord is distributed as a standalone (Fantom) application - just unzip it.
