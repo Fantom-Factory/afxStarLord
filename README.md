@@ -22,6 +22,24 @@ Language Servers (such as the Fantom LSP) are standalone programs that are start
 
 Note that LSPs generally do not provide syntax highlighting.
 
+## <a name="Install"></a>Install
+
+Install `Language Server Protocol (LSP) for Fantom` with the Fantom Pod Manager ( [FPM](http://eggbox.fantomfactory.org/pods/afFpm) ):
+
+    C:\> fpm install afxStarLord
+
+Or install `Language Server Protocol (LSP) for Fantom` with [fanr](https://fantom.org/doc/docFanr/Tool.html#install):
+
+    C:\> fanr install -r http://eggbox.fantomfactory.org/fanr/ afxStarLord
+
+To use in a [Fantom](https://fantom-lang.org/) project, add a dependency to `build.fan`:
+
+    depends = ["sys 1.0", ..., "afxStarLord 0.0"]
+
+## <a name="documentation"></a>Documentation
+
+Full API & fandocs are available on the [Eggbox](http://eggbox.fantomfactory.org/pods/afxStarLord/) - the Fantom Pod Repository.
+
 ## Usage
 
 StarLord is distributed as a standalone (Fantom) application - just [download it from GitHub](https://github.com/Fantom-Factory/afxStarLord/releases) and unzip it.
@@ -66,6 +84,8 @@ Visit `Window -> Preferences -> Language Servers`, click **Add**, and associate 
 
 When editing Fantom files, make sure to open with the *Generic Text Editor* and not the default *Text Editor* - because LSP4E only works with the Generic Text Editor.
 
+![eclipse](http://eggbox.fantomfactory.org/pods/afxStarLord/doc/screenshot-eclipse.png)
+
 ### Kate Editor
 
 [Kate Editor](https://kate-editor.org/) is a little complicated to setup because you have to first create syntax highlighting and bind the LSP to the syntax.
@@ -96,6 +116,8 @@ Visit `Settings -> Configure Kate -> LSP Client -> User Server Settings` and ent
       }
     }
     
+
+![eclipse](http://eggbox.fantomfactory.org/pods/afxStarLord/doc/screenshot-kate.png)
 
 ### Sublime Text
 
