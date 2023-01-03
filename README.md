@@ -24,7 +24,7 @@ Note that LSPs generally do not provide syntax highlighting.
 
 ## Usage
 
-StarLord is distributed as a standalone (Fantom) application - just unzip it.
+StarLord is distributed as a standalone (Fantom) application - just [download it from GitHub](https://github.com/Fantom-Factory/afxStarLord/releases) and unzip it.
 
 Install an LSP Client feature / plugin into your favourite IDE / text editor and configure it to use the unzipped `afxStarLord` Fantom app. Some example text editor configurations are given below.
 
@@ -43,6 +43,8 @@ For example, place this `fan.props` in your project directory to compile against
 
 ## IDE / Text Editor Integration
 
+These examples assume StarLord had been unzipped into `C:\StarLord\` - update them so they point to where StarLord has *actually* been unzipped.
+
 ### Eclipse IDE
 
 [Eclipse IDE](https://eclipseide.org/) uses the [LSP4E Plugin](https://github.com/eclipse/lsp4e), so install that first.
@@ -53,7 +55,7 @@ Create an **"External Tool Configuration"** with the following:
 
 * Name - `Fantom LSP`
 * Location - `C:\Apps\Java\bin\java.exe`
-* Arguments - `-cp C:\StarLord\lib\java\sys.jar fanx.tools.Fan afxStarLord`
+* Arguments - `-cp C:\StarLord\lib\java\sys.jar -Dfan.home=C:\StarLord fanx.tools.Fan afxStarLord`
 
 
 Visit `Window -> Preferences -> General -> Content Types` and **Add Child** to create a new `Fantom Source File` entry under `Text`. **Add** a file association of `*.fan`.
@@ -87,7 +89,7 @@ Visit `Settings -> Configure Kate -> LSP Client -> User Server Settings` and ent
     {
       "servers": {
         "fantom": {
-          "command": ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "fanx.tools.Fan", "afxStarLord"],
+          "command": ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "-Dfan.home=C:\\StarLord", "fanx.tools.Fan", "afxStarLord"],
           "url": "https://www.fantomfactory.com/",
           "highlightingModeRegex": "Fantom"
         }
@@ -111,7 +113,7 @@ Visit `Tools -> Command Palette -> Preferences: LSP Settings` and in the user se
       "clients": {
         "Fantom LSP": {
           "enabled": true,
-          "command": ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "fanx.tools.Fan", "afxStarLord"],
+          "command": ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "-Dfan.home=C:\\StarLord", "fanx.tools.Fan", "afxStarLord"],
           "selector": "source.fan",
           "schemes": ["file"],
         }
@@ -129,7 +131,7 @@ As per standard Fantom compilation, compiled pods are output to `lib/fan/` of th
 
 Debug logging to a file maybe enabled by updating the StarLord command to:
 
-    ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "fanx.tools.Fan", "afxStarLord", "-debug", "-logToFile", "-logFile", "C:\\path\\to\\starlord-logs.txt"],
+    ["java", "-cp", "C:\\StarLord\\lib\\java\\sys.jar", "-Dfan.home=C:\\StarLord", "fanx.tools.Fan", "afxStarLord", "-debug", "-logToFile", "-logFile", "C:\\path\\to\\starlord-logs.txt"],
     
     
 
