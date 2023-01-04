@@ -75,7 +75,7 @@ Visit `Window -> Preferences -> Language Servers`, click **Add**, and associate 
 
 When editing Fantom files, make sure to open with the *Generic Text Editor* and not the default *Text Editor* - because LSP4E only works with the Generic Text Editor.
 
-![eclipse](http://eggbox.fantomfactory.org/pods/afxStarLord/doc/screenshot-eclipse.png)
+![eclipse](doc/screenshot-eclipse.png)
 
 ### Kate Editor
 
@@ -108,7 +108,7 @@ Visit `Settings -> Configure Kate -> LSP Client -> User Server Settings` and ent
     }
     
 
-![eclipse](http://eggbox.fantomfactory.org/pods/afxStarLord/doc/screenshot-kate.png)
+![eclipse](doc/screenshot-kate.png)
 
 ### Sublime Text
 
