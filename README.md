@@ -22,24 +22,6 @@ Language Servers (such as the Fantom LSP) are standalone programs that are start
 
 Note that LSPs generally do not provide syntax highlighting.
 
-## <a name="Install"></a>Install
-
-Install `Language Server Protocol (LSP) for Fantom` with the Fantom Pod Manager ( [FPM](http://eggbox.fantomfactory.org/pods/afFpm) ):
-
-    C:\> fpm install afxStarLord
-
-Or install `Language Server Protocol (LSP) for Fantom` with [fanr](https://fantom.org/doc/docFanr/Tool.html#install):
-
-    C:\> fanr install -r http://eggbox.fantomfactory.org/fanr/ afxStarLord
-
-To use in a [Fantom](https://fantom-lang.org/) project, add a dependency to `build.fan`:
-
-    depends = ["sys 1.0", ..., "afxStarLord 0.0"]
-
-## <a name="documentation"></a>Documentation
-
-Full API & fandocs are available on the [Eggbox](http://eggbox.fantomfactory.org/pods/afxStarLord/) - the Fantom Pod Repository.
-
 ## Usage
 
 StarLord is distributed as a standalone (Fantom) application - just [download it from GitHub](https://github.com/Fantom-Factory/afxStarLord/releases) and unzip it.
@@ -50,14 +32,23 @@ StarLord needs to find the pods that your Fantom projects are dependant on, and 
 
 * Project Envs default to using environment variables
 * `fan.props` files can be used to configure a [PathEnv](https://fantom.org/doc/docLang/Env#PathEnv)
-* `fpm.props` files are also supported for [FPM](http://eggbox.fantomfactory.org/pods/afFpm) integration
+* `fpm.props` files are also supported for [FPM](http://eggbox.fantomfactory.org/pods/afFpm) integration (FPM not in included in default StarLord download.)
 
 
-For example, place this `fan.props` in your project directory to compile against a SkySpark installation.
+For example, place this `fan.props` in your project directory to compile against the default suite of core pods in your Fantom home directory.
+
+    # fan.props to compile against Fantom core pods
+    # this dir should point to FAN_HOME env var
+    path=/Apps/fantom-1.0.78
+    
+
+Or use a `fan.props` similar to this one to compile against a SkySpark installation.
 
     # fan.props to compile against SkySpark and its var dir
     path=/Temp/skyspark-3.1.4; /Temp/skyspark-3.1.4/var
     
+
+Or, if you already have Fantom setup on your development machine, you may copy `afxStarLord.pod` to `<FAN_HOME>/lib/fan/` and `lic/lic-starlord.props` to `<FAN_HOME>/lic/` and forgo the `fan.props`.
 
 ## IDE / Text Editor Integration
 

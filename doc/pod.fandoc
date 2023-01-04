@@ -25,14 +25,24 @@ StarLord needs to find the pods that your Fantom projects are dependant on, and 
 
  - Project Envs default to using environment variables
  - 'fan.props' files can be used to configure a [PathEnv]`https://fantom.org/doc/docLang/Env#PathEnv`
- - 'fpm.props' files are also supported for [FPM]`http://eggbox.fantomfactory.org/pods/afFpm` integration
+ - 'fpm.props' files are also supported for [FPM]`http://eggbox.fantomfactory.org/pods/afFpm` integration (FPM not in included in default StarLord download.)
 
-For example, place this 'fan.props' in your project directory to compile against a SkySpark installation.
+For example, place this 'fan.props' in your project directory to compile against the default suite of core pods in your Fantom home directory.
+
+pre>
+# fan.props to compile against Fantom core pods
+# this dir should point to FAN_HOME env var
+path=/Apps/fantom-1.0.78
+<pre
+
+Or use a 'fan.props' similar to this one to compile against a SkySpark installation.
 
 pre>
 # fan.props to compile against SkySpark and its var dir
 path=/Temp/skyspark-3.1.4; /Temp/skyspark-3.1.4/var
 <pre
+
+Or, if you already have Fantom setup on your development machine, you may copy 'afxStarLord.pod' to '<FAN_HOME>/lib/fan/' and 'lic/lic-starlord.props' to '<FAN_HOME>/lic/' and forgo the 'fan.props'.
 
 
 

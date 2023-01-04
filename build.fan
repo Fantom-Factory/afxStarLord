@@ -26,8 +26,7 @@ class Build : BuildPod {
 
 			// ---- Fantom Factory --------------
 			"afxLspFantom 0.0.1  - 0.1",
-			"afJson       2.0.15 - 2.0",
-			"afFpm        2.1.5  - 2.1",
+			"afJson       2.0.15 - 2.0",	// **** non-conflicting sys::Range using statements
 		]
  
 		srcDirs = [`fan/`]
